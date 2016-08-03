@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="title">#222222</color>
+    <color name="year">#999999</color>
+    <color name="error_color">#FF4081</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="bg_login">#f0e68c</color>
+    <color name="bg_register">#eee8aa</color>
+    <color name="bg_main">#428bca</color>
+    <color name="white">#ffffff</color>
+    <color name="firebrick">#b22222</color>
+    <color name="input_login">#222222</color>
+    <color name="trucklancer">#696969</color>
+    <color name="input_login_hint">#999999</color>
+    <color name="input_register">#222222</color>
+    <color name="input_register_bg">#3b4148</color>
+    <color name="input_register_hint">#999999</color>
+    <color name="btn_login">#daa520</color>
+    <color name="btn_register">#daa520</color>
+    <color name="btn_login_bg">#eceef1</color>
+    <color name="btn_register_bg">#eceef1</color>
+    <color name="lbl_name">#333333</color>
+    <color name="btn_logut_bg">#ffffff</color>
+    <color name="nevigate">#4169e1</color>
+</resources>

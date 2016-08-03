@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*" android:stretchColumns="*"
+            android:background="#ffffff">
+
+        <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+            <EditText
+                    android:id="@+id/amount"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="20000"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/input_login"
+                    android:textColorHint="@color/input_login_hint"/>
+            <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@color/firebrick"
+                    android:text="Bid"
+                    android:textColor="@color/white"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
