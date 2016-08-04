@@ -22,7 +22,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:hint="20000"
+                    android:hint="Rs"
                     android:inputType="number"
                     android:padding="10dp"
                     android:singleLine="true"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:background="@color/firebrick"
-                    android:text="Bid"
+                    android:text="QUOTE"
                     android:textColor="@color/white"/>
         </TableRow>
     </TableLayout>

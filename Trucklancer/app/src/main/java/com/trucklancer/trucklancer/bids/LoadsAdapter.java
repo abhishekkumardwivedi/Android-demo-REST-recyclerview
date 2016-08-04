@@ -15,13 +15,20 @@ public class LoadsAdapter extends RecyclerView.Adapter<LoadsAdapter.MyViewHolder
     private List<Load> mLoadsList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, year, genre, budget, vehicle;
+        public TextView from;
+        public TextView to;
+        public TextView deliverydate;
+        public TextView weight;
+        public TextView material;
+        public TextView truck;
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            genre = (TextView) view.findViewById(R.id.genre);
-            year = (TextView) view.findViewById(R.id.year);
+            from = (TextView) view.findViewById(R.id.from);
+            to = (TextView) view.findViewById(R.id.to);
+            deliverydate = (TextView) view.findViewById(R.id.date);
+            weight = (TextView) view.findViewById(R.id.weight);
+            material = (TextView) view.findViewById(R.id.material);
         }
     }
 
@@ -32,7 +39,7 @@ public class LoadsAdapter extends RecyclerView.Adapter<LoadsAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.bids_list_row, parent, false);
+                .inflate(R.layout.bids_list_row2, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -40,9 +47,12 @@ public class LoadsAdapter extends RecyclerView.Adapter<LoadsAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Load load = mLoadsList.get(position);
-        holder.title.setText(load.getTitle());
-        holder.genre.setText(load.getGenre());
-        holder.year.setText(load.getYear());
+        holder.from.setText("Pune");
+        holder.to.setText("Belgaum");
+        holder.deliverydate.setText("24/08/2016");
+        holder.weight.setText("60 tons");
+        holder.material.setText("chemical");
+//        holder.deliverydate.setText(load.getYear());
     }
 
     @Override

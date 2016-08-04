@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Delhi"
+            android:id="@+id/from"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mumbai"
+            android:id="@+id/to"
+            android:layout_marginRight="22dp"
+            android:layout_marginEnd="22dp"
+            android:layout_above="@+id/material" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Chemical"
+            android:id="@+id/material"
+            android:layout_below="@+id/from" android:layout_alignLeft="@+id/from"
+            android:layout_alignStart="@+id/from" android:layout_marginTop="28dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="22/08/2016"
+            android:id="@+id/date"
+            android:layout_alignBaseline="@+id/material" android:layout_alignBottom="@+id/material"
+            android:layout_alignRight="@+id/to" android:layout_alignEnd="@+id/to"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icon_truck"
+            android:src="@drawable/truckicon"
+            android:layout_alignTop="@+id/to" android:layout_centerHorizontal="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="50 tons"
+            android:id="@+id/weight"
+            android:layout_alignTop="@+id/date" android:layout_alignLeft="@+id/icon_truck"
+            android:layout_alignStart="@+id/icon_truck"/>
+</RelativeLayout>

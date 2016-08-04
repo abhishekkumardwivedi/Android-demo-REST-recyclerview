@@ -9,8 +9,12 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
+    <!--<include-->
+            <!--layout="@layout/app_bar_main2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
     <include
-            layout="@layout/app_bar_main2"
+            layout="@layout/activity_bid_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
