@@ -14,51 +14,62 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Delhi"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/from"
-            android:layout_marginLeft="35dp"
-            android:layout_marginStart="35dp"
-            android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:text="unknown"
+            android:textColor="@color/textMain"
+            android:layout_alignParentTop="true" android:layout_toRightOf="@+id/truck"
+            android:layout_toEndOf="@+id/truck" android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Mumbai"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/to"
-            android:layout_marginRight="22dp"
-            android:layout_marginEnd="22dp"
-            android:layout_above="@+id/material" android:layout_alignParentRight="true"
+            android:text="unknown"
+            android:textColor="@color/textMain"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Chemical"
-            android:id="@+id/material"
-            android:layout_below="@+id/from" android:layout_alignLeft="@+id/from"
-            android:layout_alignStart="@+id/from" android:layout_marginTop="28dp"/>
+            android:id="@+id/date"
+            android:text="date"
+            android:textColor="@color/nevigate"
+            android:layout_centerVertical="true" android:layout_alignRight="@+id/material"
+            android:layout_alignEnd="@+id/material"/>
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="22/08/2016"
-            android:id="@+id/date"
-            android:layout_alignBaseline="@+id/material" android:layout_alignBottom="@+id/material"
-            android:layout_alignRight="@+id/to" android:layout_alignEnd="@+id/to"/>
+            android:id="@+id/material"
+            android:text="material"
+            android:textColor="@color/btn_register"
+            android:gravity="center_horizontal" android:layout_below="@+id/truck"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/icon_truck"
-            android:src="@drawable/truckicon"
-            android:layout_alignTop="@+id/to" android:layout_centerHorizontal="true"/>
+            android:id="@+id/right_arrow"
+            android:src="@drawable/right_arrow"
+            android:layout_alignParentTop="true" android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" android:layout_marginRight="110dp"
+            android:layout_marginEnd="110dp" android:layout_alignBottom="@+id/from"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="50 tons"
+            android:text="weight"
             android:id="@+id/weight"
-            android:layout_alignTop="@+id/date" android:layout_alignLeft="@+id/icon_truck"
-            android:layout_alignStart="@+id/icon_truck"/>
+            android:textColor="@color/nevigate"
+            android:layout_centerVertical="true" android:layout_alignLeft="@+id/from"
+            android:layout_alignStart="@+id/from"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/truckicon"
+            android:id="@+id/truck" android:layout_alignTop="@+id/from"
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
 </RelativeLayout>

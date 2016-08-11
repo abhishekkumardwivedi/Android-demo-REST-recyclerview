@@ -9,14 +9,24 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-    <!--<include-->
-            <!--layout="@layout/app_bar_main2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"/>-->
-    <include
-            layout="@layout/activity_bid_details"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <!--<include-->
+        <!--layout="@layout/app_bar_main2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+        <include
+                layout="@layout/activity_bid_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <FrameLayout
+                android:id="@+id/flContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"

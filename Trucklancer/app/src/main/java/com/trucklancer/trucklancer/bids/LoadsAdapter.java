@@ -17,7 +17,7 @@ public class LoadsAdapter extends RecyclerView.Adapter<LoadsAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView from;
         public TextView to;
-        public TextView deliverydate;
+        public TextView postedDate;
         public TextView weight;
         public TextView material;
         public TextView truck;
@@ -26,7 +26,7 @@ public class LoadsAdapter extends RecyclerView.Adapter<LoadsAdapter.MyViewHolder
             super(view);
             from = (TextView) view.findViewById(R.id.from);
             to = (TextView) view.findViewById(R.id.to);
-            deliverydate = (TextView) view.findViewById(R.id.date);
+            postedDate = (TextView) view.findViewById(R.id.date);
             weight = (TextView) view.findViewById(R.id.weight);
             material = (TextView) view.findViewById(R.id.material);
         }
@@ -47,12 +47,11 @@ public class LoadsAdapter extends RecyclerView.Adapter<LoadsAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Load load = mLoadsList.get(position);
-        holder.from.setText("Pune");
-        holder.to.setText("Belgaum");
-        holder.deliverydate.setText("24/08/2016");
-        holder.weight.setText("60 tons");
-        holder.material.setText("chemical");
-//        holder.deliverydate.setText(load.getYear());
+        holder.from.setText(load.getFromCity());
+        holder.to.setText(load.getToCity());
+        holder.postedDate.setText(load.getPostDate());
+        holder.weight.setText(load.getWeight() + " " + load.getWeightUnit());
+        holder.material.setText(load.getMaterial());
     }
 
     @Override

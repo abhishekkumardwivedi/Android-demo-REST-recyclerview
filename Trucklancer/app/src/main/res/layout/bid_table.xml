@@ -27,6 +27,7 @@
                     android:textColor="#000"/>
 
             <TextView
+                    android:id="@+id/bid_avg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_span="2"
@@ -53,19 +54,19 @@
                 android:layout_width="match_parent">
 
             <TextView
-                    android:id="@+id/TL1" android:text="Stephen"
+                    android:id="@+id/bidder_name" android:text="Stephen"
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:padding="20dip" android:gravity="center"/>
 
             <TextView
-                    android:id="@+id/TL2" android:text="11/07/2016"
+                    android:id="@+id/bid_date" android:text="11/07/2016"
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:padding="20dip" android:gravity="center"/>
 
             <TextView
-                    android:id="@+id/TL3" android:text="Rs 19000"
+                    android:id="@+id/bid_price" android:text="Rs 19000"
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:padding="20dip" android:gravity="center"/>
