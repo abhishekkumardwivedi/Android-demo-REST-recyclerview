@@ -4,12 +4,12 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <!--<TableLayout-->
-            <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:shrinkColumns="*" android:stretchColumns="*"-->
-            <!--android:background="#ffffff">-->
+    <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*" android:stretchColumns="*"
+            android:background="#ffffff">
 
         <!--<TableRow-->
                 <!--android:layout_height="wrap_content"-->
@@ -54,24 +54,23 @@
                 android:layout_width="match_parent">
 
             <TextView
-                    android:id="@+id/bidder_name" android:text="Name"
+                    android:id="@+id/bidder_name" android:text="Stephen"
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:padding="20dip" android:gravity="center"/>
 
             <TextView
-                    android:id="@+id/bid_date" android:text="Date"
+                    android:id="@+id/bid_date" android:text="11/07/2016"
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:padding="20dip" android:gravity="center"/>
 
             <TextView
-                    android:id="@+id/bid_price" android:text="price"
+                    android:id="@+id/bid_price" android:text="Rs 19000"
                     android:layout_weight="1"
                     android:textColor="#000000"
                     android:padding="20dip" android:gravity="center"/>
 
         </TableRow>
-    <!--</TableLayout>-->
-    <!--<include layout="@layout/quoted_row"/>-->
+    </TableLayout>
 </LinearLayout>

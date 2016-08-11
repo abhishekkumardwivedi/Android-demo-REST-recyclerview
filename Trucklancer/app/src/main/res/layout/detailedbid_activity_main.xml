@@ -81,7 +81,6 @@
 
                         <include android:id="@+id/detailed_message" layout="@layout/load_message"/>
                     </android.support.v7.widget.CardView>
-
                     <android.support.v7.widget.CardView
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
@@ -90,8 +89,55 @@
                             android:layout_height="wrap_content">
 
                         <!--<include android:id="@+id/bidtable" layout="@layout/bid_table"/>-->
-                        <include layout="@layout/quotes_content_main"/>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:orientation="vertical"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent">
+                            <TableLayout
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:shrinkColumns="*" android:stretchColumns="*"
+                                    android:background="#ffffff">
+                                <!--<TableRow-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_width="fill_parent"-->
+                                <!--android:gravity="center_horizontal">-->
 
+                                <!--<TextView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginLeft="18dp"-->
+                                <!--android:textSize="18dp" android:text="Bids"-->
+                                <!--android:textStyle="bold"-->
+                                <!--android:layout_span="2"-->
+                                <!--android:padding="18dip"-->
+                                <!--android:textColor="#000"/>-->
+
+                                <!--<TextView-->
+                                <!--android:id="@+id/bid_avg"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_span="2"-->
+                                <!--android:textSize="14dp"-->
+                                <!--android:textStyle="bold"-->
+                                <!--android:padding="10dip"-->
+                                <!--android:layout_gravity="center"-->
+                                <!--android:layout_marginLeft="10dp"-->
+                                <!--android:layout_marginRight="10dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:textColor="#000"/>-->
+
+
+                                <!--</TableRow>-->
+                                <!--<View-->
+                                        <!--android:layout_width="match_parent"-->
+                                        <!--android:layout_height="1dp"-->
+                                        <!--android:background="#eee9e9"/>-->
+
+                                <include layout="@layout/quotes_content_main"/>
+                            </TableLayout>
+                        </LinearLayout>
                     </android.support.v7.widget.CardView>
                 </LinearLayout>
             </ScrollView>

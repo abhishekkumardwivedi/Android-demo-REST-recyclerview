@@ -4,9 +4,7 @@ import com.trucklancer.trucklancer.R;
 import com.trucklancer.trucklancer.app.AppConfig;
 import com.trucklancer.trucklancer.app.AppConstants;
 import com.trucklancer.trucklancer.app.SessionHandler;
-import com.trucklancer.trucklancer.bids.DividerItemDecoration;
 import com.trucklancer.trucklancer.bids.Load;
-import com.trucklancer.trucklancer.bids.LoadsAdapter;
 import com.trucklancer.trucklancer.bids.PoastedLoads;
 
 import org.json.JSONArray;
@@ -26,6 +24,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,15 +41,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuoteDetails extends AppCompatActivity {
     private static final String TAG = QuoteDetails.class.getSimpleName();
 
     public static List<Quote> mQuoteList = new ArrayList<>();
+    public static Map<String, String> transportMap = new HashMap<>();
 
     private RecyclerView recyclerView;
     private QuotesAdapter mAdapter;
+    public  String sessionId;
 
     private int index;
     private Load load;
@@ -58,6 +63,10 @@ public class QuoteDetails extends AppCompatActivity {
     private TextView materialTv;
     private TextView truckTv;
     private TextView messageTv;
+    private EditText priceEt;
+    private EditText quoteMsg;
+
+    private Button quoteBtn;
 
 
     @Override
@@ -87,6 +96,11 @@ public class QuoteDetails extends AppCompatActivity {
         weightTv = (TextView) findViewById(R.id.weight);
         materialTv = (TextView) findViewById(R.id.material);
         truckTv = (TextView) findViewById(R.id.truck);
+        priceEt = (EditText) findViewById(R.id.amount);
+
+        quoteMsg = (EditText) findViewById(R.id.quote_message);
+        quoteBtn = (Button) findViewById(R.id.button_quote);
+
 
         infoTitleTv.setText(load.getFromCity() + " to " + load.getToCity());
         messageTv.setText(load.getMessage());
@@ -96,11 +110,27 @@ public class QuoteDetails extends AppCompatActivity {
         truckTv.setText("Truck type: " + load.getTruckType());
 
         SessionHandler session = SessionHandler.getInstance(getApplicationContext());
-        String sessionId = session.getSessionId();
+        sessionId = session.getSessionId();
         if (sessionId == null) {
             session.logoutUser();
         }
-        new quoteAsync().execute(sessionId, load.getId());
+        new quoteAsync().execute(sessionId, load.getId(), AppConstants.GET_QUOTE);
+
+        quoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String amount = String.valueOf(priceEt.getText());
+                String message = String.valueOf(quoteMsg.getText());
+                SessionHandler session = SessionHandler.getInstance(getApplicationContext());
+                String user = session.getPhone();
+                if (user == null) {
+                    Log.d(TAG, "Logged in user details are goofed up!!");
+                    return;
+                }
+                new quoteAsync().execute(sessionId, load.getId(), AppConstants.SUBMIT_QUOTE,
+                        amount, message, user);
+            }
+        });
     }
 
     @Override
@@ -118,6 +148,7 @@ public class QuoteDetails extends AppCompatActivity {
 
         public static final int CONNECTION_TIMEOUT = 10000;
         public static final int READ_TIMEOUT = 15000;
+        private String reqType;
 
         ProgressDialog pdLoading = new ProgressDialog(QuoteDetails.this);
         HttpURLConnection conn;
@@ -128,34 +159,13 @@ public class QuoteDetails extends AppCompatActivity {
             super.onPreExecute();
             // Method running in UI thread
             Log.d(TAG, "Getting bids list ..");
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+//            pdLoading.setMessage("\tLoading...");
+//            pdLoading.setCancelable(false);
+//            pdLoading.show();
         }
 
-//
-//        private String getMaterialTypes(String payload) {
-//            try {
-//                JSONArray jsonArray = new JSONArray(payload);
-//                Log.d(TAG, "Length: " + jsonArray.get(0));
-//                JSONObject jsonObject = null;
-//                int length = jsonArray.length();
-//                Load load = null;
-//                for (int i = 0; i < length; i++) {
-//                    jsonObject = (JSONObject) jsonArray.get(i);
-//                    load = new Load();
-//                    load.addToMaterialMap(jsonObject.getInt("id"),
-//                            jsonObject.getString("materialname"));
-//                }
-//                return AppConstants.SUCCESS;
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//                return AppConstants.FAIL;
-//            }
-//        }
-
         private String getQuotesList(String payload) {
-            if(payload == null) {
+            if (payload == null) {
                 return AppConstants.OLD_DATA;
             }
             mQuoteList.clear();
@@ -168,10 +178,10 @@ public class QuoteDetails extends AppCompatActivity {
 
                 for (int i = 0; i < length; i++) {
                     jsonObject = (JSONObject) jsonArray.get(i);
-
+                    quote = new Quote();
                     quote.setId(jsonObject.getString("id"));
                     quote.setPostId(jsonObject.getString("postid"));
-                    quote.setQuoteId(jsonObject.getString("partialacid"));
+                    quote.setQuoteId(jsonObject.getString("partalacid"));
                     quote.setAcceptId(jsonObject.getString("accepterid"));
                     quote.setPrice(jsonObject.getString("price"));
                     quote.setDescription(jsonObject.getString("description"));
@@ -187,8 +197,40 @@ public class QuoteDetails extends AppCompatActivity {
             }
         }
 
+        private String getTruckNameList(String payload) {
+            if (payload == null) {
+                return AppConstants.OLD_DATA;
+            }
+            mQuoteList.clear();
+            try {
+                JSONArray jsonArray = new JSONArray(payload.toString());
+                JSONObject jsonObject = null;
+                int length = jsonArray.length();
+                Log.d(TAG, "Length: " + length);
+                for (int i = 0; i < length; i++) {
+                    jsonObject = (JSONObject) jsonArray.get(i);
+                    transportMap.put(jsonObject.getString("id"), jsonObject.getString("trnsprtname"));
+                }
+                return AppConstants.SUCCESS;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return AppConstants.FAIL;
+            }
+        }
+
         @Override
         protected String doInBackground(String... params) {
+
+            reqType = params[2];
+            if (params[2].equals(AppConstants.GET_QUOTE)) {
+                if (transportMap.size() == 0) {
+                    postHTTPRequest(params[0], params[1], AppConstants.GET_TRANSPORT_NAME);
+                }
+            }
+            return postHTTPRequest(params);
+        }
+
+        protected String postHTTPRequest(String... params) {
 
             try {
                 Log.d(TAG, "Connecting to server. Expect some log of status");
@@ -205,7 +247,14 @@ public class QuoteDetails extends AppCompatActivity {
                 Uri.Builder builder = new Uri.Builder()
                         .appendQueryParameter(AppConstants.SESSIONID, params[0])
                         .appendQueryParameter(AppConstants.POST_ID, params[1])
-                        .appendQueryParameter(AppConstants.REQUEST, AppConstants.GET_QUOTE);
+                        .appendQueryParameter(AppConstants.REQUEST, params[2]);
+
+                if (params[2].equals(AppConstants.SUBMIT_QUOTE)) {
+                    builder.appendQueryParameter(AppConstants.SUBMIT_AMOUNT, params[3])
+                            .appendQueryParameter(AppConstants.SUBMIT_MESSAGE, params[4])
+                            .appendQueryParameter(AppConstants.USERNAME, params[5]);
+                }
+
                 String query = builder.build().getEncodedQuery();
 
                 // Open connection for sending data
@@ -240,9 +289,18 @@ public class QuoteDetails extends AppCompatActivity {
                     }
 
                     Log.d(TAG, "result: " + result.toString());
-
-                    String response = getQuotesList(result.toString());
-                    updateQuotesDisplay();
+                    String response;
+                    if (params[2].equals(AppConstants.GET_QUOTE)) {
+                        response = getQuotesList(result.toString());
+                        return response;
+                    } else if (params[2].equals(AppConstants.GET_TRANSPORT_NAME)) {
+                        response = getTruckNameList(result.toString());
+                        return response;
+                    } else if (params[2].equals(AppConstants.SUBMIT_QUOTE)) {
+                        return AppConstants.SUCCESS;
+                    }else {
+                        response = AppConstants.BAD_REQUEST;
+                    }
 
                     return response;
                 } else {
@@ -269,6 +327,7 @@ public class QuoteDetails extends AppCompatActivity {
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(mAdapter);
         }
+
         @Override
         protected void onPostExecute(String response) {
             pdLoading.dismiss();
@@ -279,7 +338,12 @@ public class QuoteDetails extends AppCompatActivity {
             }
 
             if (response.equals(AppConstants.SUCCESS)) {
+                if(reqType.equals(AppConstants.SUBMIT_QUOTE)) {
+
+                    new quoteAsync().execute(sessionId, load.getId(), AppConstants.GET_QUOTE);
+                }
                 Log.d(TAG, "success on async!!");
+                updateQuotesDisplay();
                 mAdapter.notifyDataSetChanged();
             } else {
                 Toast.makeText(getApplicationContext(), "Fetch error!!", Toast.LENGTH_LONG).show();

@@ -79,6 +79,10 @@ public class SessionHandler {
         return user;
     }
 
+    public String getPhone() {
+       return pref.getString(PHONE, null);
+    }
+
     public String getSessionId() {
         return pref.getString(SESSION_ID, null);
     }

@@ -29,7 +29,7 @@
                     android:textColor="@color/input_login"
                     android:textColorHint="@color/input_login_hint"/>
             <Button
-                    android:id="@+id/btnLogin"
+                    android:id="@+id/button_quote"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,6 +37,24 @@
                     android:background="@color/firebrick"
                     android:text="QUOTE"
                     android:textColor="@color/white"/>
+        </TableRow>
+        <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+            <EditText
+                    android:id="@+id/quote_message"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="Quote Message"
+                    android:inputType="textAutoComplete"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/input_login"
+                    android:textColorHint="@color/input_login_hint"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>
